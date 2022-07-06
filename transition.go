@@ -3,12 +3,13 @@ package common
 import (
 	"errors"
 	"fmt"
+	"reflect"
+	"strings"
+
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
-	"reflect"
-	"strings"
 )
 
 var Lang = message.NewPrinter(language.Chinese)
@@ -155,6 +156,7 @@ func (sm *StateMachine) Do(tx *gorm.DB, trigger string, userInfoId uint, args ..
 			return err
 		}
 	}
+	fmt.Println(tx, src, dest)
 
 	return sm.log(tx, trigger, src, dest, userInfoId)
 }
